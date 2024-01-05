@@ -8,6 +8,9 @@ router.post("/cars", carController.addCar);
 //PUT to update an existing car
 router.put("/cars/:id", carController.updateCar);
 
+// PUT to update multiple cars
+router.put("/cars/updateMany/:updateManyId", carController.updateManyCars);
+
 // DELETE to delete an existing car
 router.delete("/cars/:id", carController.deleteCar);
 

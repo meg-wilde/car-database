@@ -55,3 +55,29 @@ exports.deleteCar = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+//update many cars
+exports.updateManyCars = async (req, res) => {
+  try {
+    console.log("Received PUT request to update multiple cars");
+    const { field, oldValue, newValue } = req.body; //req body to have field, old value and new value
+    const filter = { [field]: oldValue };
+    const update = { $set: { [field]: newValue } };
+
+    const updatedCars = await Car.updateMany(filter, update); //wait for the update to send
+
+    if (updatedCars.nModified === 0) {
+      return res
+        .status(404)
+        .json({ error: "No cars found with the specified criteria" });
+    }
+
+    res.json({
+      message: "Cars updated successfully",
+      count: updatedCars.nModified,
+    });
+  } catch (error) {
+    console.error("Error updating cars:", error);
+    res.status(500).json({ error: error.message });
+  }
+};

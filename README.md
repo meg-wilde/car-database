@@ -22,3 +22,4 @@ List the technologies and frameworks used in your project.
 4. install frontend dependencies: npm install
 
 5. start the server: cd carInventoryApp then npm start.
+
